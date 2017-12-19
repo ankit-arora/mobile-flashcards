@@ -8,7 +8,6 @@ import {
     Keyboard
 } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 import * as actions from '../actions';
 
 class NewDeck extends Component {
@@ -31,9 +30,14 @@ class NewDeck extends Component {
 
         Keyboard.dismiss();
 
-        this.props.navigation.dispatch(NavigationActions.back({
-            key: 'NewDeck'
-        }));
+        this.props.navigation.navigate(
+            'Deck',
+            { title: deckTitle }
+        );
+
+        // this.props.navigation.dispatch(NavigationActions.back({
+        //     key: 'NewDeck'
+        // }));
     };
 
     render() {
@@ -52,7 +56,7 @@ class NewDeck extends Component {
                     onChangeText={text => this.setState({ deckTitle: text })}
                 />
                 <TouchableOpacity style={styles.submitButton} onPress={() => this.saveDeck()}>
-                    <Text style={{ color: 'white', fontSize: 22 }}>Submit</Text>
+                    <Text style={{ color: 'white', fontSize: 22 }}>Create Deck</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
         );
