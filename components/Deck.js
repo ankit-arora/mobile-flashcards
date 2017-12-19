@@ -11,7 +11,6 @@ class Deck extends Component {
     };
     render() {
         const { deck } = this.props;
-        debugger;
         const { questions, title } = deck;
         const noCards = questions.length;
         let cardString = '';
@@ -39,6 +38,10 @@ class Deck extends Component {
                     {noCards > 0
                         ?
                         <TouchableOpacity
+                            onPress={() => this.props.navigation.navigate(
+                                'Quiz',
+                                { title }
+                            )}
                             style={styles.startQuizButton}
                         >
                             <Text style={{ color: 'white', fontSize: 22 }}>Start Quiz</Text>
@@ -54,7 +57,6 @@ class Deck extends Component {
 function mapStateToProps(state, { navigation }) {
     const { title } = navigation.state.params;
     const { decks } = state;
-    debugger;
     return {
         deck: decks[title]
     };
