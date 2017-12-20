@@ -12,6 +12,7 @@ import Deck from './components/Deck';
 import NewQuestion from './components/NewQuestion';
 import Quiz from './components/Quiz';
 import reducer from './reducers';
+import { setLocalNotification } from './utils/helpers';
 
 const store = createStore(
     reducer,
@@ -108,6 +109,9 @@ const MainNavigator = StackNavigator({
 });
 
 export default class App extends Component {
+    componentDidMount() {
+        setLocalNotification();
+    }
     render() {
         return (
             <Provider store={store}>

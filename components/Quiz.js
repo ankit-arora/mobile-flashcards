@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class Quiz extends Component {
     static navigationOptions = () => ({
@@ -17,6 +18,9 @@ class Quiz extends Component {
         this.setState((oldState) => {
             const oldCardIndex = oldState.cardIndex;
             if (oldCardIndex === (questions.length - 1)) {
+                //completed quiz so reset notification
+                clearLocalNotification()
+                    .then(setLocalNotification);
                 return {
                     showScore: true
                 };
